@@ -291,6 +291,26 @@ object Settings {
     }
     
     // ========================================
+    // Internet Card Settings (top-level aliases for convenience)
+    // ========================================
+
+    /** Whether the internet card is allowed to make connections */
+    var internetEnabled: Boolean
+        get() = Network.httpEnabled
+        set(v) { Network.httpEnabled = v }
+
+    /** Timeout in milliseconds for internet connections */
+    var internetTimeout: Int = 10_000
+
+    /**
+     * Whitelist of allowed hostnames.
+     * Empty list means all non-blacklisted hosts are allowed.
+     */
+    var internetWhitelist: List<String>
+        get() = Network.httpWhitelist
+        set(v) { Network.httpWhitelist = v }
+
+    // ========================================
     // Utility Functions
     // ========================================
     

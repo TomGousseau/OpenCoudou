@@ -372,6 +372,9 @@ object ModItems {
     val INK_CARTRIDGE: DeferredItem<Item> = ITEMS.registerSimpleItem("inkcartridge")
     val INK_CARTRIDGE_EMPTY: DeferredItem<Item> = ITEMS.registerSimpleItem("inkcartridgeempty")
     
+    /** Item representing a completed 3D-printed block/object from the Printer. */
+    val PRINTED_BLOCK: DeferredItem<Item> = ITEMS.registerSimpleItem("printedblock")
+    
     val INTERWEB: DeferredItem<Item> = ITEMS.registerSimpleItem("interweb")
     val COMPONENT_BUS_TIER1: DeferredItem<Item> = ITEMS.registerSimpleItem("componentbus1")
     val COMPONENT_BUS_TIER2: DeferredItem<Item> = ITEMS.registerSimpleItem("componentbus2")
