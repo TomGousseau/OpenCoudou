@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "opencomputers:block/disassembler" },
+    "facing=south": { "model": "opencomputers:block/disassembler", "y": 180 },
+    "facing=west": { "model": "opencomputers:block/disassembler", "y": 270 },
+    "facing=east": { "model": "opencomputers:block/disassembler", "y": 90 }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "opencomputers.name": "OpenComputers",
+  
+  "itemGroup.opencomputers": "OpenComputers",
+  
+  "block.opencomputers.case1": "电脑机箱 (一级)",
+  "block.opencomputers.case2": "电脑机箱 (二级)",
+  "block.opencomputers.case3": "电脑机箱 (三级)",
+  "block.opencomputers.case_creative": "电脑机箱 (创造模式)",
+  
+  "block.opencomputers.screen1": "显示器 (一级)",
+  "block.opencomputers.screen2": "显示器 (二级)",
+  "block.opencomputers.screen3": "显示器 (三级)",
+  
+  "block.opencomputers.hologram1": "全息投影仪 (一级)",
+  "block.opencomputers.hologram2": "全息投影仪 (二级)",
+  
+  "block.opencomputers.keyboard": "键盘",
+  
+  "block.opencomputers.cable": "电缆",
+  "block.opencomputers.relay": "中继器",
+  "block.opencomputers.switch": "交换机",
+  "block.opencomputers.access_point": "无线接入点",
+  "block.opencomputers.net_splitter": "网络分离器",
+  
+  "block.opencomputers.power_distributor": "电力分配器",
+  "block.opencomputers.power_converter": "电力转换器",
+  "block.opencomputers.charger": "充电器",
+  "block.opencomputers.capacitor": "电容",
+  
+  "block.opencomputers.adapter": "适配器",
+  "block.opencomputers.redstone_io": "红石I/O端口",
+  "block.opencomputers.geolyzer": "地形分析仪",
+  "block.opencomputers.motion_sensor": "运动传感器",
+  "block.opencomputers.waypoint": "路径点",
+  "block.opencomputers.transposer": "转置器",
+  
+  "block.opencomputers.assembler": "电子组装机",
+  "block.opencomputers.disassembler": "拆解机",
+  "block.opencomputers.printer": "3D打印机",
+  "block.opencomputers.disk_drive": "磁盘驱动器",
+  "block.opencomputers.rack": "服务器机架",
+  "block.opencomputers.raid": "磁盘阵列",
+  
+  "block.opencomputers.microcontroller": "微控制器",
+  "block.opencomputers.robot": "机器人",
+  
+  "block.opencomputers.chamelium_block": "变色材料块",
+  
+  "item.opencomputers.cpu1": "CPU (一级)",
+  "item.opencomputers.cpu2": "CPU (二级)",
+  "item.opencomputers.cpu3": "CPU (三级)",
+  
+  "item.opencomputers.memory1": "内存 (一级)",
+  "item.opencomputers.memory2": "内存 (二级)",
+  "item.opencomputers.memory3": "内存 (三级)",
+  "item.opencomputers.memory3_5": "内存 (3.5级)",
+  
+  "item.opencomputers.hdd1": "硬盘 (一级)",
+  "item.opencomputers.hdd2": "硬盘 (二级)",
+  "item.opencomputers.hdd3": "硬盘 (三级)",
+  "item.opencomputers.floppy": "软盘",
+  "item.opencomputers.eeprom": "EEPROM",
+  
+  "item.opencomputers.gpu1": "显卡 (一级)",
+  "item.opencomputers.gpu2": "显卡 (二级)",
+  "item.opencomputers.gpu3": "显卡 (三级)",
+  
+  "item.opencomputers.network_card": "网卡",
+  "item.opencomputers.wireless_network_card1": "无线网卡 (一级)",
+  "item.opencomputers.wireless_network_card2": "无线网卡 (二级)",
+  "item.opencomputers.linked_card": "连接卡",
+  "item.opencomputers.internet_card": "互联网卡",
+  "item.opencomputers.redstone_card1": "红石卡 (一级)",
+  "item.opencomputers.redstone_card2": "红石卡 (二级)",
+  "item.opencomputers.data_card1": "数据卡 (一级)",
+  "item.opencomputers.data_card2": "数据卡 (二级)",
+  "item.opencomputers.data_card3": "数据卡 (三级)",
+  
+  "item.opencomputers.analyzer": "分析仪",
+  "item.opencomputers.terminal": "远程终端",
+  "item.opencomputers.nanomachines": "纳米机器人",
+  "item.opencomputers.manual": "OpenComputers手册",
+  "item.opencomputers.wrench": "扳手",
+  "item.opencomputers.hover_boots": "悬浮靴",
+  
+  "entity.opencomputers.robot": "机器人",
+  "entity.opencomputers.drone": "无人机",
+  
+  "tooltip.opencomputers.tier": "等级: %s",
+  "tooltip.opencomputers.energy": "能量: %s / %s",
+  "tooltip.opencomputers.capacity": "容量: %s",
+  "tooltip.opencomputers.address": "地址: %s",
+  "tooltip.opencomputers.hold_shift": "按Shift查看详情",
+  
+  "message.opencomputers.computer.running": "电脑正在运行",
+  "message.opencomputers.computer.stopped": "电脑已停止",
+  "message.opencomputers.computer.turned_on": "电脑已开机",
+  "message.opencomputers.computer.turned_off": "电脑已关机"
+}

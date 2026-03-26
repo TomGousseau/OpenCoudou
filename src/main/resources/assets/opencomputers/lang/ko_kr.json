@@ -1,0 +1,89 @@
+{
+  "opencomputers.name": "OpenComputers",
+  
+  "itemGroup.opencomputers": "OpenComputers",
+  
+  "block.opencomputers.case1": "컴퓨터 케이스 (티어 1)",
+  "block.opencomputers.case2": "컴퓨터 케이스 (티어 2)",
+  "block.opencomputers.case3": "컴퓨터 케이스 (티어 3)",
+  "block.opencomputers.case_creative": "컴퓨터 케이스 (크리에이티브)",
+  
+  "block.opencomputers.screen1": "스크린 (티어 1)",
+  "block.opencomputers.screen2": "스크린 (티어 2)",
+  "block.opencomputers.screen3": "스크린 (티어 3)",
+  
+  "block.opencomputers.hologram1": "홀로그램 프로젝터 (티어 1)",
+  "block.opencomputers.hologram2": "홀로그램 프로젝터 (티어 2)",
+  
+  "block.opencomputers.keyboard": "키보드",
+  
+  "block.opencomputers.cable": "케이블",
+  "block.opencomputers.relay": "릴레이",
+  "block.opencomputers.switch": "스위치",
+  "block.opencomputers.access_point": "액세스 포인트",
+  "block.opencomputers.net_splitter": "네트 스플리터",
+  
+  "block.opencomputers.power_distributor": "전력 분배기",
+  "block.opencomputers.power_converter": "전력 변환기",
+  "block.opencomputers.charger": "충전기",
+  "block.opencomputers.capacitor": "축전기",
+  
+  "block.opencomputers.adapter": "어댑터",
+  "block.opencomputers.redstone_io": "레드스톤 I/O",
+  "block.opencomputers.geolyzer": "지오라이저",
+  "block.opencomputers.motion_sensor": "모션 센서",
+  "block.opencomputers.waypoint": "웨이포인트",
+  "block.opencomputers.transposer": "트랜스포저",
+  
+  "block.opencomputers.assembler": "전자 조립기",
+  "block.opencomputers.disassembler": "분해기",
+  "block.opencomputers.printer": "3D 프린터",
+  "block.opencomputers.disk_drive": "디스크 드라이브",
+  "block.opencomputers.rack": "서버 랙",
+  "block.opencomputers.raid": "RAID",
+  
+  "block.opencomputers.microcontroller": "마이크로컨트롤러",
+  "block.opencomputers.robot": "로봇",
+  
+  "block.opencomputers.chamelium_block": "카멜리움 블록",
+  
+  "item.opencomputers.cpu1": "CPU (티어 1)",
+  "item.opencomputers.cpu2": "CPU (티어 2)",
+  "item.opencomputers.cpu3": "CPU (티어 3)",
+  
+  "item.opencomputers.memory1": "메모리 (티어 1)",
+  "item.opencomputers.memory2": "메모리 (티어 2)",
+  "item.opencomputers.memory3": "메모리 (티어 3)",
+  "item.opencomputers.memory3_5": "메모리 (티어 3.5)",
+  
+  "item.opencomputers.hdd1": "하드 디스크 (티어 1)",
+  "item.opencomputers.hdd2": "하드 디스크 (티어 2)",
+  "item.opencomputers.hdd3": "하드 디스크 (티어 3)",
+  "item.opencomputers.floppy": "플로피 디스크",
+  "item.opencomputers.eeprom": "EEPROM",
+  
+  "item.opencomputers.gpu1": "그래픽 카드 (티어 1)",
+  "item.opencomputers.gpu2": "그래픽 카드 (티어 2)",
+  "item.opencomputers.gpu3": "그래픽 카드 (티어 3)",
+  
+  "item.opencomputers.analyzer": "분석기",
+  "item.opencomputers.terminal": "원격 터미널",
+  "item.opencomputers.nanomachines": "나노머신",
+  "item.opencomputers.manual": "OpenComputers 매뉴얼",
+  "item.opencomputers.wrench": "렌치",
+  "item.opencomputers.hover_boots": "호버 부츠",
+  
+  "entity.opencomputers.robot": "로봇",
+  "entity.opencomputers.drone": "드론",
+  
+  "tooltip.opencomputers.tier": "티어: %s",
+  "tooltip.opencomputers.energy": "에너지: %s / %s",
+  "tooltip.opencomputers.capacity": "용량: %s",
+  "tooltip.opencomputers.address": "주소: %s",
+  "tooltip.opencomputers.hold_shift": "Shift로 상세 정보",
+  
+  "message.opencomputers.computer.running": "컴퓨터 실행 중",
+  "message.opencomputers.computer.stopped": "컴퓨터 정지됨",
+  "message.opencomputers.computer.turned_on": "컴퓨터가 켜졌습니다",
+  "message.opencomputers.computer.turned_off": "컴퓨터가 꺼졌습니다"
+}

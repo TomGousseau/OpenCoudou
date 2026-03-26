@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "opencomputers:block/disk_drive" },
+    "facing=south": { "model": "opencomputers:block/disk_drive", "y": 180 },
+    "facing=west": { "model": "opencomputers:block/disk_drive", "y": 270 },
+    "facing=east": { "model": "opencomputers:block/disk_drive", "y": 90 }
+  }
+}

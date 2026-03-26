@@ -1,0 +1,89 @@
+{
+  "opencomputers.name": "OpenComputers",
+  
+  "itemGroup.opencomputers": "OpenComputers",
+  
+  "block.opencomputers.case1": "コンピューターケース (Tier 1)",
+  "block.opencomputers.case2": "コンピューターケース (Tier 2)",
+  "block.opencomputers.case3": "コンピューターケース (Tier 3)",
+  "block.opencomputers.case_creative": "コンピューターケース (クリエイティブ)",
+  
+  "block.opencomputers.screen1": "スクリーン (Tier 1)",
+  "block.opencomputers.screen2": "スクリーン (Tier 2)",
+  "block.opencomputers.screen3": "スクリーン (Tier 3)",
+  
+  "block.opencomputers.hologram1": "ホログラムプロジェクター (Tier 1)",
+  "block.opencomputers.hologram2": "ホログラムプロジェクター (Tier 2)",
+  
+  "block.opencomputers.keyboard": "キーボード",
+  
+  "block.opencomputers.cable": "ケーブル",
+  "block.opencomputers.relay": "リレー",
+  "block.opencomputers.switch": "スイッチ",
+  "block.opencomputers.access_point": "アクセスポイント",
+  "block.opencomputers.net_splitter": "ネットスプリッター",
+  
+  "block.opencomputers.power_distributor": "電力分配器",
+  "block.opencomputers.power_converter": "電力変換器",
+  "block.opencomputers.charger": "チャージャー",
+  "block.opencomputers.capacitor": "キャパシター",
+  
+  "block.opencomputers.adapter": "アダプター",
+  "block.opencomputers.redstone_io": "レッドストーンI/O",
+  "block.opencomputers.geolyzer": "ジオライザー",
+  "block.opencomputers.motion_sensor": "モーションセンサー",
+  "block.opencomputers.waypoint": "ウェイポイント",
+  "block.opencomputers.transposer": "トランスポーザー",
+  
+  "block.opencomputers.assembler": "電子組立機",
+  "block.opencomputers.disassembler": "分解機",
+  "block.opencomputers.printer": "3Dプリンター",
+  "block.opencomputers.disk_drive": "ディスクドライブ",
+  "block.opencomputers.rack": "サーバーラック",
+  "block.opencomputers.raid": "RAID",
+  
+  "block.opencomputers.microcontroller": "マイクロコントローラー",
+  "block.opencomputers.robot": "ロボット",
+  
+  "block.opencomputers.chamelium_block": "カメリウムブロック",
+  
+  "item.opencomputers.cpu1": "CPU (Tier 1)",
+  "item.opencomputers.cpu2": "CPU (Tier 2)",
+  "item.opencomputers.cpu3": "CPU (Tier 3)",
+  
+  "item.opencomputers.memory1": "メモリ (Tier 1)",
+  "item.opencomputers.memory2": "メモリ (Tier 2)",
+  "item.opencomputers.memory3": "メモリ (Tier 3)",
+  "item.opencomputers.memory3_5": "メモリ (Tier 3.5)",
+  
+  "item.opencomputers.hdd1": "ハードディスク (Tier 1)",
+  "item.opencomputers.hdd2": "ハードディスク (Tier 2)",
+  "item.opencomputers.hdd3": "ハードディスク (Tier 3)",
+  "item.opencomputers.floppy": "フロッピーディスク",
+  "item.opencomputers.eeprom": "EEPROM",
+  
+  "item.opencomputers.gpu1": "グラフィックカード (Tier 1)",
+  "item.opencomputers.gpu2": "グラフィックカード (Tier 2)",
+  "item.opencomputers.gpu3": "グラフィックカード (Tier 3)",
+  
+  "item.opencomputers.analyzer": "アナライザー",
+  "item.opencomputers.terminal": "リモートターミナル",
+  "item.opencomputers.nanomachines": "ナノマシン",
+  "item.opencomputers.manual": "OpenComputersマニュアル",
+  "item.opencomputers.wrench": "レンチ",
+  "item.opencomputers.hover_boots": "ホバーブーツ",
+  
+  "entity.opencomputers.robot": "ロボット",
+  "entity.opencomputers.drone": "ドローン",
+  
+  "tooltip.opencomputers.tier": "ティア: %s",
+  "tooltip.opencomputers.energy": "エネルギー: %s / %s",
+  "tooltip.opencomputers.capacity": "容量: %s",
+  "tooltip.opencomputers.address": "アドレス: %s",
+  "tooltip.opencomputers.hold_shift": "Shiftで詳細表示",
+  
+  "message.opencomputers.computer.running": "コンピューター稼働中",
+  "message.opencomputers.computer.stopped": "コンピューター停止中",
+  "message.opencomputers.computer.turned_on": "コンピューターが起動しました",
+  "message.opencomputers.computer.turned_off": "コンピューターがシャットダウンしました"
+}

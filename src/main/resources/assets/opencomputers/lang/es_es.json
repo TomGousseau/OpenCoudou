@@ -1,0 +1,89 @@
+{
+  "opencomputers.name": "OpenComputers",
+  
+  "itemGroup.opencomputers": "OpenComputers",
+  
+  "block.opencomputers.case1": "Caja de Computadora (Nivel 1)",
+  "block.opencomputers.case2": "Caja de Computadora (Nivel 2)",
+  "block.opencomputers.case3": "Caja de Computadora (Nivel 3)",
+  "block.opencomputers.case_creative": "Caja de Computadora (Creativo)",
+  
+  "block.opencomputers.screen1": "Pantalla (Nivel 1)",
+  "block.opencomputers.screen2": "Pantalla (Nivel 2)",
+  "block.opencomputers.screen3": "Pantalla (Nivel 3)",
+  
+  "block.opencomputers.hologram1": "Proyector de Holograma (Nivel 1)",
+  "block.opencomputers.hologram2": "Proyector de Holograma (Nivel 2)",
+  
+  "block.opencomputers.keyboard": "Teclado",
+  
+  "block.opencomputers.cable": "Cable",
+  "block.opencomputers.relay": "Relé",
+  "block.opencomputers.switch": "Interruptor",
+  "block.opencomputers.access_point": "Punto de Acceso",
+  "block.opencomputers.net_splitter": "Divisor de Red",
+  
+  "block.opencomputers.power_distributor": "Distribuidor de Energía",
+  "block.opencomputers.power_converter": "Convertidor de Energía",
+  "block.opencomputers.charger": "Cargador",
+  "block.opencomputers.capacitor": "Capacitor",
+  
+  "block.opencomputers.adapter": "Adaptador",
+  "block.opencomputers.redstone_io": "Redstone I/O",
+  "block.opencomputers.geolyzer": "Geolyzer",
+  "block.opencomputers.motion_sensor": "Sensor de Movimiento",
+  "block.opencomputers.waypoint": "Punto de Ruta",
+  "block.opencomputers.transposer": "Transpositor",
+  
+  "block.opencomputers.assembler": "Ensamblador Electrónico",
+  "block.opencomputers.disassembler": "Desensamblador",
+  "block.opencomputers.printer": "Impresora 3D",
+  "block.opencomputers.disk_drive": "Unidad de Disco",
+  "block.opencomputers.rack": "Rack de Servidores",
+  "block.opencomputers.raid": "RAID",
+  
+  "block.opencomputers.microcontroller": "Microcontrolador",
+  "block.opencomputers.robot": "Robot",
+  
+  "block.opencomputers.chamelium_block": "Bloque de Chamelium",
+  
+  "item.opencomputers.cpu1": "CPU (Nivel 1)",
+  "item.opencomputers.cpu2": "CPU (Nivel 2)",
+  "item.opencomputers.cpu3": "CPU (Nivel 3)",
+  
+  "item.opencomputers.memory1": "Memoria (Nivel 1)",
+  "item.opencomputers.memory2": "Memoria (Nivel 2)",
+  "item.opencomputers.memory3": "Memoria (Nivel 3)",
+  "item.opencomputers.memory3_5": "Memoria (Nivel 3.5)",
+  
+  "item.opencomputers.hdd1": "Disco Duro (Nivel 1)",
+  "item.opencomputers.hdd2": "Disco Duro (Nivel 2)",
+  "item.opencomputers.hdd3": "Disco Duro (Nivel 3)",
+  "item.opencomputers.floppy": "Disquete",
+  "item.opencomputers.eeprom": "EEPROM",
+  
+  "item.opencomputers.gpu1": "Tarjeta Gráfica (Nivel 1)",
+  "item.opencomputers.gpu2": "Tarjeta Gráfica (Nivel 2)",
+  "item.opencomputers.gpu3": "Tarjeta Gráfica (Nivel 3)",
+  
+  "item.opencomputers.analyzer": "Analizador",
+  "item.opencomputers.terminal": "Terminal Remoto",
+  "item.opencomputers.nanomachines": "Nanomáquinas",
+  "item.opencomputers.manual": "Manual de OpenComputers",
+  "item.opencomputers.wrench": "Llave",
+  "item.opencomputers.hover_boots": "Botas de Levitación",
+  
+  "entity.opencomputers.robot": "Robot",
+  "entity.opencomputers.drone": "Dron",
+  
+  "tooltip.opencomputers.tier": "Nivel: %s",
+  "tooltip.opencomputers.energy": "Energía: %s / %s",
+  "tooltip.opencomputers.capacity": "Capacidad: %s",
+  "tooltip.opencomputers.address": "Dirección: %s",
+  "tooltip.opencomputers.hold_shift": "Shift para detalles",
+  
+  "message.opencomputers.computer.running": "Computadora funcionando",
+  "message.opencomputers.computer.stopped": "Computadora detenida",
+  "message.opencomputers.computer.turned_on": "Computadora encendida",
+  "message.opencomputers.computer.turned_off": "Computadora apagada"
+}

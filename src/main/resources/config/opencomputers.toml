@@ -1,0 +1,216 @@
+# OpenComputers Configuration
+# Modern rewrite for Minecraft 1.21.4
+
+# ========================================
+# Computer Settings
+# ========================================
+
+[computer]
+# Maximum number of active computers per dimension
+maxComputersPerDimension = 1000
+
+# Base timeout for computer execution (milliseconds)
+executionTimeout = 5000
+
+# Enable persistence of computer state on chunk unload
+enablePersistence = true
+
+# Enable computer crash when execution takes too long
+crashOnTimeout = true
+
+# ========================================
+# Power Settings
+# ========================================
+
+[power]
+# Enable power consumption
+enabled = true
+
+# Power unit conversion ratios (internal units per mod unit)
+# FE/RF per OC power unit
+feRatio = 100.0
+
+# Cost per tick for running computer
+computerCostPerTick = 0.5
+
+# Cost per block for robot movement
+robotMoveCost = 15.0
+
+# Cost per character for screen update
+screenCostPerCharacter = 0.01
+
+# Cost per voxel for hologram update
+hologramCostPerVoxel = 0.0001
+
+# ========================================
+# Filesystem Settings
+# ========================================
+
+[filesystem]
+# Maximum number of file handles per filesystem
+maxHandles = 256
+
+# Maximum file size in bytes (4MB default)
+maxFileSize = 4194304
+
+# Size of managed filesystems by tier (in KB)
+hddTier1Size = 1024     # 1MB
+hddTier2Size = 2048     # 2MB  
+hddTier3Size = 4096     # 4MB
+floppySize = 512        # 512KB
+
+# Enable temporary filesystem access
+enableTmpfs = true
+
+# Temporary filesystem size (in KB)
+tmpfsSize = 64
+
+# ========================================
+# Network Settings
+# ========================================
+
+[network]
+# Maximum distance for wired network connections (blocks)
+maxWiredDistance = 16
+
+# Maximum distance for wireless network messages (blocks)
+maxWirelessRange = 400
+
+# Enable HTTP access from computers
+enableHttp = true
+
+# Enable TCP/UDP connections
+enableTcp = true
+
+# HTTP request timeout (milliseconds)
+httpTimeout = 10000
+
+# Maximum concurrent HTTP requests per computer
+maxHttpConnections = 4
+
+# URL whitelist (empty = allow all)
+# httpWhitelist = ["*"]
+
+# URL blacklist
+httpBlacklist = ["127.0.0.1", "localhost", "10.*", "192.168.*", "172.16.*"]
+
+# ========================================
+# Robot Settings
+# ========================================
+
+[robot]
+# Enable robot block breaking
+canBreakBlocks = true
+
+# Enable robot block placement
+canPlaceBlocks = true
+
+# Enable robot entity interaction
+canInteractWithEntities = true
+
+# Maximum items robot can pick up per operation
+maxItemsPerOperation = 64
+
+# Robot movement delay (ticks)
+moveDelay = 10
+
+# Robot turn delay (ticks)
+turnDelay = 5
+
+# Robot swing delay (ticks)
+swingDelay = 10
+
+# Experience upgrade: XP to level ratio
+xpToLevelRatio = 30
+
+# ========================================
+# Drone Settings
+# ========================================
+
+[drone]
+# Maximum flight height above ground
+maxFlightHeight = 256
+
+# Movement speed (blocks per tick)
+moveSpeed = 0.45
+
+# Name tag range (blocks)
+nameTagRange = 32
+
+# ========================================
+# Screen Settings
+# ========================================
+
+[screen]
+# Screen resolutions by tier [width, height]
+tier1Resolution = [50, 16]
+tier2Resolution = [80, 25]
+tier3Resolution = [160, 50]
+
+# Color depth by tier (1=2 colors, 4=16 colors, 8=256 colors)
+tier1ColorDepth = 1
+tier2ColorDepth = 4
+tier3ColorDepth = 8
+
+# Maximum screen multi-block size
+maxScreenWidth = 8
+maxScreenHeight = 6
+
+# ========================================
+# Hologram Settings
+# ========================================
+
+[hologram]
+# Hologram resolution (x, y, z voxels)
+resolution = [48, 32, 48]
+
+# Maximum render distance (blocks)
+renderDistance = 64
+
+# Color count by tier
+tier1Colors = 2
+tier2Colors = 3
+
+# ========================================
+# GPU Settings
+# ========================================
+
+[gpu]
+# Operations budget per tick
+tier1Budget = 128
+tier2Budget = 512
+tier3Budget = 2048
+
+# ========================================
+# Debug Settings
+# ========================================
+
+[debug]
+# Enable debug card in survival mode (normally creative only)
+debugCardInSurvival = false
+
+# Enable verbose logging
+verboseLogging = false
+
+# Enable component access logging
+logComponentAccess = false
+
+# ========================================
+# Misc Settings
+# ========================================
+
+[misc]
+# Enable loot disks in dungeon chests
+enableLootDisks = true
+
+# Loot disk spawn chance (0.0-1.0)
+lootDiskChance = 0.2
+
+# Enable nanomachines
+enableNanomachines = true
+
+# Geolyzer scan range (blocks in each direction)
+geolyzerRange = 32
+
+# Waypoint detection range (blocks)
+waypointRange = 64

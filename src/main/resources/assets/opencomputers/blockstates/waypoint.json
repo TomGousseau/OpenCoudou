@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "opencomputers:block/waypoint" },
+    "facing=south": { "model": "opencomputers:block/waypoint", "y": 180 },
+    "facing=west": { "model": "opencomputers:block/waypoint", "y": 270 },
+    "facing=east": { "model": "opencomputers:block/waypoint", "y": 90 }
+  }
+}

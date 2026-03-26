@@ -1,0 +1,100 @@
+{
+  "opencomputers.name": "OpenComputers",
+  
+  "itemGroup.opencomputers": "OpenComputers",
+  
+  "block.opencomputers.case1": "Boîtier d'ordinateur (Niveau 1)",
+  "block.opencomputers.case2": "Boîtier d'ordinateur (Niveau 2)",
+  "block.opencomputers.case3": "Boîtier d'ordinateur (Niveau 3)",
+  "block.opencomputers.case_creative": "Boîtier d'ordinateur (Créatif)",
+  
+  "block.opencomputers.screen1": "Écran (Niveau 1)",
+  "block.opencomputers.screen2": "Écran (Niveau 2)",
+  "block.opencomputers.screen3": "Écran (Niveau 3)",
+  
+  "block.opencomputers.hologram1": "Projecteur d'hologramme (Niveau 1)",
+  "block.opencomputers.hologram2": "Projecteur d'hologramme (Niveau 2)",
+  
+  "block.opencomputers.keyboard": "Clavier",
+  
+  "block.opencomputers.cable": "Câble",
+  "block.opencomputers.relay": "Relais",
+  "block.opencomputers.switch": "Commutateur",
+  "block.opencomputers.access_point": "Point d'accès",
+  "block.opencomputers.net_splitter": "Séparateur réseau",
+  
+  "block.opencomputers.power_distributor": "Distributeur d'énergie",
+  "block.opencomputers.power_converter": "Convertisseur d'énergie",
+  "block.opencomputers.charger": "Chargeur",
+  "block.opencomputers.capacitor": "Condensateur",
+  
+  "block.opencomputers.adapter": "Adaptateur",
+  "block.opencomputers.redstone_io": "Redstone I/O",
+  "block.opencomputers.geolyzer": "Analyseur géologique",
+  "block.opencomputers.motion_sensor": "Détecteur de mouvement",
+  "block.opencomputers.waypoint": "Point de passage",
+  "block.opencomputers.transposer": "Transposeur",
+  
+  "block.opencomputers.assembler": "Assembleur électronique",
+  "block.opencomputers.disassembler": "Désassembleur",
+  "block.opencomputers.printer": "Imprimante 3D",
+  "block.opencomputers.disk_drive": "Lecteur de disque",
+  "block.opencomputers.rack": "Baie de serveur",
+  "block.opencomputers.raid": "RAID",
+  
+  "block.opencomputers.microcontroller": "Microcontrôleur",
+  "block.opencomputers.robot": "Robot",
+  
+  "block.opencomputers.chamelium_block": "Bloc de chamélium",
+  
+  "item.opencomputers.cpu1": "CPU (Niveau 1)",
+  "item.opencomputers.cpu2": "CPU (Niveau 2)",
+  "item.opencomputers.cpu3": "CPU (Niveau 3)",
+  
+  "item.opencomputers.memory1": "Mémoire (Niveau 1)",
+  "item.opencomputers.memory2": "Mémoire (Niveau 2)",
+  "item.opencomputers.memory3": "Mémoire (Niveau 3)",
+  "item.opencomputers.memory3_5": "Mémoire (Niveau 3.5)",
+  
+  "item.opencomputers.hdd1": "Disque dur (Niveau 1)",
+  "item.opencomputers.hdd2": "Disque dur (Niveau 2)",
+  "item.opencomputers.hdd3": "Disque dur (Niveau 3)",
+  "item.opencomputers.floppy": "Disquette",
+  "item.opencomputers.eeprom": "EEPROM",
+  
+  "item.opencomputers.gpu1": "Carte graphique (Niveau 1)",
+  "item.opencomputers.gpu2": "Carte graphique (Niveau 2)",
+  "item.opencomputers.gpu3": "Carte graphique (Niveau 3)",
+  
+  "item.opencomputers.network_card": "Carte réseau",
+  "item.opencomputers.wireless_network_card1": "Carte réseau sans fil (Niveau 1)",
+  "item.opencomputers.wireless_network_card2": "Carte réseau sans fil (Niveau 2)",
+  "item.opencomputers.linked_card": "Carte liée",
+  "item.opencomputers.internet_card": "Carte Internet",
+  "item.opencomputers.redstone_card1": "Carte Redstone (Niveau 1)",
+  "item.opencomputers.redstone_card2": "Carte Redstone (Niveau 2)",
+  "item.opencomputers.data_card1": "Carte de données (Niveau 1)",
+  "item.opencomputers.data_card2": "Carte de données (Niveau 2)",
+  "item.opencomputers.data_card3": "Carte de données (Niveau 3)",
+  
+  "item.opencomputers.analyzer": "Analyseur",
+  "item.opencomputers.terminal": "Terminal distant",
+  "item.opencomputers.nanomachines": "Nanomachines",
+  "item.opencomputers.manual": "Manuel OpenComputers",
+  "item.opencomputers.wrench": "Clé",
+  "item.opencomputers.hover_boots": "Bottes de lévitation",
+  
+  "entity.opencomputers.robot": "Robot",
+  "entity.opencomputers.drone": "Drone",
+  
+  "tooltip.opencomputers.tier": "Niveau: %s",
+  "tooltip.opencomputers.energy": "Énergie: %s / %s",
+  "tooltip.opencomputers.capacity": "Capacité: %s",
+  "tooltip.opencomputers.address": "Adresse: %s",
+  "tooltip.opencomputers.hold_shift": "Maj pour détails",
+  
+  "message.opencomputers.computer.running": "Ordinateur en marche",
+  "message.opencomputers.computer.stopped": "Ordinateur arrêté",
+  "message.opencomputers.computer.turned_on": "Ordinateur allumé",
+  "message.opencomputers.computer.turned_off": "Ordinateur éteint"
+}

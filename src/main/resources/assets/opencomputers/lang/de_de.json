@@ -1,0 +1,101 @@
+{
+  "opencomputers.name": "OpenComputers",
+  
+  "itemGroup.opencomputers": "OpenComputers",
+  
+  "block.opencomputers.case1": "Computergehäuse (Stufe 1)",
+  "block.opencomputers.case2": "Computergehäuse (Stufe 2)",
+  "block.opencomputers.case3": "Computergehäuse (Stufe 3)",
+  "block.opencomputers.case_creative": "Computergehäuse (Kreativ)",
+  
+  "block.opencomputers.screen1": "Bildschirm (Stufe 1)",
+  "block.opencomputers.screen2": "Bildschirm (Stufe 2)",
+  "block.opencomputers.screen3": "Bildschirm (Stufe 3)",
+  
+  "block.opencomputers.hologram1": "Hologramm-Projektor (Stufe 1)",
+  "block.opencomputers.hologram2": "Hologramm-Projektor (Stufe 2)",
+  
+  "block.opencomputers.keyboard": "Tastatur",
+  
+  "block.opencomputers.cable": "Kabel",
+  "block.opencomputers.relay": "Relais",
+  "block.opencomputers.switch": "Schalter",
+  "block.opencomputers.access_point": "Zugangspunkt",
+  "block.opencomputers.net_splitter": "Netz-Splitter",
+  
+  "block.opencomputers.power_distributor": "Stromverteiler",
+  "block.opencomputers.power_converter": "Stromwandler",
+  "block.opencomputers.charger": "Ladegerät",
+  "block.opencomputers.capacitor": "Kondensator",
+  
+  "block.opencomputers.adapter": "Adapter",
+  "block.opencomputers.redstone_io": "Redstone I/O",
+  "block.opencomputers.geolyzer": "Geolyzer",
+  "block.opencomputers.motion_sensor": "Bewegungssensor",
+  "block.opencomputers.waypoint": "Wegpunkt",
+  "block.opencomputers.transposer": "Transposer",
+  
+  "block.opencomputers.assembler": "Elektronik-Assembler",
+  "block.opencomputers.disassembler": "Disassembler",
+  "block.opencomputers.printer": "3D-Drucker",
+  "block.opencomputers.disk_drive": "Laufwerk",
+  "block.opencomputers.rack": "Server-Rack",
+  "block.opencomputers.raid": "RAID",
+  
+  "block.opencomputers.microcontroller": "Mikrocontroller",
+  "block.opencomputers.robot": "Roboter",
+  
+  "block.opencomputers.chamelium_block": "Chamälium-Block",
+  
+  "item.opencomputers.cpu1": "CPU (Stufe 1)",
+  "item.opencomputers.cpu2": "CPU (Stufe 2)",
+  "item.opencomputers.cpu3": "CPU (Stufe 3)",
+  
+  "item.opencomputers.memory1": "Speicher (Stufe 1)",
+  "item.opencomputers.memory2": "Speicher (Stufe 2)",
+  "item.opencomputers.memory3": "Speicher (Stufe 3)",
+  "item.opencomputers.memory3_5": "Speicher (Stufe 3.5)",
+  
+  "item.opencomputers.hdd1": "Festplatte (Stufe 1)",
+  "item.opencomputers.hdd2": "Festplatte (Stufe 2)",
+  "item.opencomputers.hdd3": "Festplatte (Stufe 3)",
+  "item.opencomputers.floppy": "Diskette",
+  "item.opencomputers.eeprom": "EEPROM",
+  
+  "item.opencomputers.gpu1": "Grafikkarte (Stufe 1)",
+  "item.opencomputers.gpu2": "Grafikkarte (Stufe 2)",
+  "item.opencomputers.gpu3": "Grafikkarte (Stufe 3)",
+  
+  "item.opencomputers.network_card": "Netzwerkkarte",
+  "item.opencomputers.wireless_network_card1": "Drahtlose Netzwerkkarte (Stufe 1)",
+  "item.opencomputers.wireless_network_card2": "Drahtlose Netzwerkkarte (Stufe 2)",
+  "item.opencomputers.linked_card": "Verknüpfte Karte",
+  "item.opencomputers.internet_card": "Internetkarte",
+  "item.opencomputers.redstone_card1": "Redstone-Karte (Stufe 1)",
+  "item.opencomputers.redstone_card2": "Redstone-Karte (Stufe 2)",
+  "item.opencomputers.data_card1": "Datenkarte (Stufe 1)",
+  "item.opencomputers.data_card2": "Datenkarte (Stufe 2)",
+  "item.opencomputers.data_card3": "Datenkarte (Stufe 3)",
+  "item.opencomputers.world_sensor_card": "Weltsensor-Karte",
+  
+  "item.opencomputers.analyzer": "Analysegerät",
+  "item.opencomputers.terminal": "Fernbedienungs-Terminal",
+  "item.opencomputers.nanomachines": "Nanomaschinen",
+  "item.opencomputers.manual": "OpenComputers-Handbuch",
+  "item.opencomputers.wrench": "Schraubenschlüssel",
+  "item.opencomputers.hover_boots": "Schwebeschuhe",
+  
+  "entity.opencomputers.robot": "Roboter",
+  "entity.opencomputers.drone": "Drohne",
+  
+  "tooltip.opencomputers.tier": "Stufe: %s",
+  "tooltip.opencomputers.energy": "Energie: %s / %s",
+  "tooltip.opencomputers.capacity": "Kapazität: %s",
+  "tooltip.opencomputers.address": "Adresse: %s",
+  "tooltip.opencomputers.hold_shift": "Shift für Details",
+  
+  "message.opencomputers.computer.running": "Computer läuft",
+  "message.opencomputers.computer.stopped": "Computer ist gestoppt",
+  "message.opencomputers.computer.turned_on": "Computer eingeschaltet",
+  "message.opencomputers.computer.turned_off": "Computer ausgeschaltet"
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "opencomputers:block/waypoint_top",
+    "front": "opencomputers:block/waypoint_front",
+    "side": "opencomputers:block/waypoint_side"
+  }
+}
