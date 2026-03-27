@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "north": "opencomputers:block/screen/f",
+        "south": "opencomputers:block/generic_side",
+        "east": "opencomputers:block/generic_side",
+        "west": "opencomputers:block/generic_side",
+        "up": "opencomputers:block/generic_top",
+        "down": "opencomputers:block/generic_top",
+        "particle": "opencomputers:block/generic_side"
+    }
+}

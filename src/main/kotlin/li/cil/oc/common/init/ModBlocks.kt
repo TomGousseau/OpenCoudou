@@ -209,6 +209,14 @@ object ModBlocks {
     }
     
     // ========================================
+    // Web Display
+    // ========================================
+    
+    val WEB_DISPLAY: DeferredBlock<WebDisplayBlock> = BLOCKS.registerBlock("web_display", ::WebDisplayBlock) {
+        baseProperties().strength(2.0f).noOcclusion().lightLevel { state -> if (state.getValue(WebDisplayBlock.ON)) 7 else 0 }
+    }
+    
+    // ========================================
     // Helper Methods
     // ========================================
     

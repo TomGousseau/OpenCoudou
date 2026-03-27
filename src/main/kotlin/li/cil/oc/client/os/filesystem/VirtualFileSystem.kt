@@ -528,3 +528,112 @@ class FileHandle(
         }
     }
 }
+
+/**
+ * Filesystem persistence - Save/Load to NBT or JSON format.
+ * This allows the filesystem to persist across computer restarts.
+ */
+object FileSystemPersistence {
+    
+    /**
+     * Serialize the entire filesystem to a JSON string.
+     */
+    fun serialize(fs: VirtualFileSystem): String {
+        val sb = StringBuilder()
+        sb.append("{\"version\":1,\"files\":{")
+        
+        val files = mutableListOf<String>()
+        serializeDirectory(fs, "/", files)
+        
+        sb.append(files.joinToString(","))
+        sb.append("}}")
+        return sb.toString()
+    }
+    
+    private fun serializeDirectory(fs: VirtualFileSystem, path: String, files: MutableList<String>) {
+        val entries = fs.list(path) ?: return
+        
+        for (entry in entries) {
+            val fullPath = if (path == "/") "/$entry" else "$path/$entry"
+            
+            if (fs.isDirectory(fullPath)) {
+                // Add directory marker
+                files.add("\"${escapeJson(fullPath)}\":{\"type\":\"dir\"}")
+                serializeDirectory(fs, fullPath, files)
+            } else {
+                // Add file with content (base64 encoded for binary safety)
+                val content = fs.readFile(fullPath) ?: ByteArray(0)
+                val base64 = java.util.Base64.getEncoder().encodeToString(content)
+                val stat = fs.stat(fullPath)
+                files.add("\"${escapeJson(fullPath)}\":{\"type\":\"file\",\"data\":\"$base64\",\"modified\":${stat?.modified ?: 0}}")
+            }
+        }
+    }
+    
+    /**
+     * Deserialize JSON back to filesystem.
+     */
+    fun deserialize(fs: VirtualFileSystem, json: String) {
+        try {
+            // Simple JSON parser for our format
+            val filesStart = json.indexOf("\"files\":{") + 9
+            val filesEnd = json.lastIndexOf("}}")
+            if (filesStart < 9 || filesEnd < 0) return
+            
+            val filesJson = json.substring(filesStart, filesEnd)
+            
+            // Parse each entry
+            var pos = 0
+            while (pos < filesJson.length) {
+                // Find path
+                val pathStart = filesJson.indexOf('"', pos)
+                if (pathStart < 0) break
+                val pathEnd = filesJson.indexOf('"', pathStart + 1)
+                if (pathEnd < 0) break
+                
+                val path = unescapeJson(filesJson.substring(pathStart + 1, pathEnd))
+                
+                // Find type
+                val typeStart = filesJson.indexOf("\"type\":\"", pathEnd) + 8
+                val typeEnd = filesJson.indexOf('"', typeStart)
+                val type = filesJson.substring(typeStart, typeEnd)
+                
+                if (type == "dir") {
+                    fs.mkdir(path)
+                    pos = filesJson.indexOf('}', typeEnd) + 1
+                } else {
+                    // Extract data
+                    val dataStart = filesJson.indexOf("\"data\":\"", typeEnd) + 8
+                    val dataEnd = filesJson.indexOf('"', dataStart)
+                    val base64 = filesJson.substring(dataStart, dataEnd)
+                    val content = java.util.Base64.getDecoder().decode(base64)
+                    
+                    fs.writeFile(path, content)
+                    pos = filesJson.indexOf('}', dataEnd) + 1
+                }
+                
+                // Skip comma
+                if (pos < filesJson.length && filesJson[pos] == ',') pos++
+            }
+        } catch (e: Exception) {
+            // Failed to deserialize - start fresh
+            println("Failed to deserialize filesystem: ${e.message}")
+        }
+    }
+    
+    private fun escapeJson(s: String): String {
+        return s.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t")
+    }
+    
+    private fun unescapeJson(s: String): String {
+        return s.replace("\\n", "\n")
+                .replace("\\r", "\r")
+                .replace("\\t", "\t")
+                .replace("\\\"", "\"")
+                .replace("\\\\", "\\")
+    }
+}

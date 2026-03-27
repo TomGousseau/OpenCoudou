@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,on=false": { "model": "opencomputers:block/web_display" },
+        "facing=south,on=false": { "model": "opencomputers:block/web_display", "y": 180 },
+        "facing=west,on=false":  { "model": "opencomputers:block/web_display", "y": 270 },
+        "facing=east,on=false":  { "model": "opencomputers:block/web_display", "y": 90 },
+        "facing=north,on=true": { "model": "opencomputers:block/web_display_on" },
+        "facing=south,on=true": { "model": "opencomputers:block/web_display_on", "y": 180 },
+        "facing=west,on=true":  { "model": "opencomputers:block/web_display_on", "y": 270 },
+        "facing=east,on=true":  { "model": "opencomputers:block/web_display_on", "y": 90 }
+    }
+}

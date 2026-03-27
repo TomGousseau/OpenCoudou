@@ -58,7 +58,7 @@ object ClientSetup {
     @JvmStatic
     fun registerBlockEntityRenderers(event: EntityRenderersEvent.RegisterRenderers) {
         // Register block entity renderers
-        // Note: We'll add these after creating the block entity registry
+        event.registerBlockEntityRenderer(li.cil.oc.common.init.ModBlockEntities.WEB_DISPLAY.get(), ::WebDisplayRenderer)
     }
     
     @SubscribeEvent

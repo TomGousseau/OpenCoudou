@@ -58,6 +58,7 @@ object ModItems {
     
     val MICROCONTROLLER_ITEM: DeferredItem<BlockItem> = ITEMS.registerSimpleBlockItem(ModBlocks.MICROCONTROLLER)
     val CHAMELIUM_BLOCK_ITEM: DeferredItem<BlockItem> = ITEMS.registerSimpleBlockItem(ModBlocks.CHAMELIUM_BLOCK)
+    val WEB_DISPLAY_ITEM: DeferredItem<BlockItem> = ITEMS.registerSimpleBlockItem(ModBlocks.WEB_DISPLAY)
     
     // ========================================
     // CPUs
@@ -387,6 +388,14 @@ object ModItems {
     val WRENCH: DeferredItem<WrenchItem> = ITEMS.registerItem("wrench", ::WrenchItem)
     
     val DEBUG_CARD: DeferredItem<DebugCardItem> = ITEMS.registerItem("debugcard", ::DebugCardItem)
+    
+    // ========================================
+    // Web Display Items
+    // ========================================
+    
+    val LASER_POINTER: DeferredItem<LaserPointerItem> = ITEMS.registerItem("laser_pointer", ::LaserPointerItem)
+    
+    val REMOTE_KEYBOARD: DeferredItem<RemoteKeyboardItem> = ITEMS.registerItem("remote_keyboard", ::RemoteKeyboardItem)
     
     // ========================================
     // APUs (Accelerated Processing Units)

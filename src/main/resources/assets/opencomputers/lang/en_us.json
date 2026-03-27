@@ -203,5 +203,27 @@
   
   "key.opencomputers.category": "OpenComputers",
   "key.opencomputers.clipboard": "Clipboard Paste",
-  "key.opencomputers.analyze": "Analyze Block"
+  "key.opencomputers.analyze": "Analyze Block",
+  
+  "block.opencomputers.web_display": "Web Display",
+  
+  "item.opencomputers.laser_pointer": "Laser Pointer",
+  "item.opencomputers.remote_keyboard": "Remote Keyboard",
+  
+  "tooltip.opencomputers.laser_pointer.desc": "Point and click on Web Displays from a distance",
+  "tooltip.opencomputers.laser_pointer.linked": "Linked to: (%s, %s, %s)",
+  "tooltip.opencomputers.laser_pointer.unlinked": "Not linked - Shift+Right-click on Web Display to link",
+  "tooltip.opencomputers.laser_pointer.usage1": "Left-click: Click on display",
+  "tooltip.opencomputers.laser_pointer.usage2": "Right-click: Right-click on display",
+  "tooltip.opencomputers.laser_pointer.usage3": "Shift+Right-click: Link to display",
+  
+  "tooltip.opencomputers.remote_keyboard.desc": "Type on Web Displays from a distance",
+  "tooltip.opencomputers.remote_keyboard.linked": "Linked to: (%s, %s, %s)",
+  "tooltip.opencomputers.remote_keyboard.unlinked": "Not linked - Shift+Right-click on Web Display to link",
+  
+  "message.opencomputers.laser_pointer.linked": "Laser Pointer linked to display at (%s, %s, %s)",
+  "message.opencomputers.remote_keyboard.linked": "Remote Keyboard linked to display at (%s, %s, %s)",
+  
+  "tooltip.opencomputers.terminal.bound": "Bound to terminal server",
+  "tooltip.opencomputers.terminal.unbound": "Not bound to any terminal server"
 }

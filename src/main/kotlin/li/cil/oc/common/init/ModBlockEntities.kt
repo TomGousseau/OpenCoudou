@@ -283,6 +283,18 @@ object ModBlockEntities {
         }
     
     // ========================================
+    // Web Display
+    // ========================================
+    
+    val WEB_DISPLAY: DeferredHolder<BlockEntityType<*>, BlockEntityType<WebDisplayBlockEntity>> =
+        BLOCK_ENTITIES.register("web_display") {
+            BlockEntityType.Builder.of(
+                ::WebDisplayBlockEntity,
+                ModBlocks.WEB_DISPLAY.get()
+            ).build(null)
+        }
+    
+    // ========================================
     // Registration
     // ========================================
     
