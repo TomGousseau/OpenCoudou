@@ -166,6 +166,85 @@ class WindowManager(private val os: KotlinOS) {
         }
         return false
     }
+    
+    /**
+     * Handle mouse move.
+     */
+    fun handleMouseMove(x: Int, y: Int) {
+        // Update hover state on windows
+        windows.forEach { window ->
+            window.hovering = window.containsPoint(x, y)
+        }
+    }
+    
+    /**
+     * Handle drag with button.
+     */
+    fun handleDrag(x: Int, y: Int, button: Int) {
+        handleDrag(x, y)
+    }
+    
+    /**
+     * Cycle focus to next window.
+     */
+    fun cycleFocus() {
+        if (windows.size <= 1) return
+        
+        val currentIndex = focusedWindow?.let { windows.indexOf(it) } ?: -1
+        val nextIndex = (currentIndex + 1) % windows.size
+        focus(windows[nextIndex])
+    }
+    
+    /**
+     * Create a window with specific ID.
+     */
+    fun createWindow(
+        id: Int,
+        title: String,
+        x: Int,
+        y: Int,
+        width: Int,
+        height: Int
+    ): Window {
+        val window = Window(
+            id = id,
+            title = title,
+            x = x,
+            y = y,
+            width = width,
+            height = height,
+            resizable = true,
+            closeable = true,
+            windowManager = this
+        )
+        windows.add(window)
+        focus(window)
+        return window
+    }
+    
+    /**
+     * Get window by ID.
+     */
+    fun getWindow(id: Int): Window? = windows.find { it.id == id }
+    
+    /**
+     * Close window by ID.
+     */
+    fun closeWindow(id: Int) {
+        getWindow(id)?.let { closeWindow(it) }
+    }
+    
+    /**
+     * Set window always on top.
+     */
+    fun setAlwaysOnTop(window: Window, alwaysOnTop: Boolean) {
+        window.alwaysOnTop = alwaysOnTop
+        if (alwaysOnTop) {
+            // Move to top of z-order
+            windows.remove(window)
+            windows.add(window)
+        }
+    }
 }
 
 /**
@@ -182,6 +261,12 @@ class Window(
     val closeable: Boolean,
     private val windowManager: WindowManager
 ) {
+    // Window state
+    var minimized: Boolean = false
+    var maximized: Boolean = false
+    var hovering: Boolean = false
+    var alwaysOnTop: Boolean = false
+    
     // Window content
     private val components = mutableListOf<UIComponent>()
     

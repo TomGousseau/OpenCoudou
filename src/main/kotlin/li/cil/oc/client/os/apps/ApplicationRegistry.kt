@@ -1,9 +1,13 @@
 package li.cil.oc.client.os.apps
 
 import li.cil.oc.client.os.core.KotlinOS
+import li.cil.oc.client.os.core.Process
+import li.cil.oc.client.os.core.ProcessPriority
 import li.cil.oc.client.os.gui.Window
-import li.cil.oc.client.os.apps.system.*
+import li.cil.oc.client.os.apps.market.*
+import li.cil.oc.client.os.apps.maker.*
 import li.cil.oc.client.os.apps.media.*
+import li.cil.oc.client.os.apps.dev.*
 import li.cil.oc.client.os.apps.development.*
 import li.cil.oc.client.os.apps.network.*
 import li.cil.oc.client.os.apps.games.*
@@ -43,7 +47,7 @@ abstract class Application(
 ) {
     var window: Window? = null
     var running = false
-    var processId: Int? = null
+    var process: Process? = null
     
     // For backwards compatibility
     val info get() = appInfo
@@ -89,7 +93,7 @@ abstract class Application(
         onDestroy()
         window?.let { os.windowManager.closeWindow(it) }
         running = false
-        processId?.let { os.processManager.kill(it) }
+        process?.let { os.processManager.kill(it.pid) }
     }
     
     fun minimize() {
@@ -114,7 +118,13 @@ class ApplicationRegistry(private val os: KotlinOS) {
     
     private fun registerBuiltInApps() {
         // ============== SYSTEM APPS ==============
-        register(AppMarketApp.APP_INFO)
+        register(AppInfo(
+            id = "app_market",
+            name = "App Market",
+            icon = "🛒",
+            category = AppCategory.SYSTEM,
+            description = "Download and install applications"
+        ) { AppMarketApp(it) })
         register(AppInfo(
             id = "file_manager",
             name = "Files",
@@ -146,19 +156,48 @@ class ApplicationRegistry(private val os: KotlinOS) {
         register(ReinstallOSApp.APP_INFO)
         
         // ============== MEDIA APPS ==============
-        register(PictureEditApp.APP_INFO)
-        register(PictureViewApp.APP_INFO)
+        register(AppInfo(
+            id = "picture_edit",
+            name = "Picture Edit",
+            icon = "🎨",
+            category = AppCategory.MEDIA,
+            description = "Edit pictures and images"
+        ) { PictureEditApp(it) })
+        register(AppInfo(
+            id = "picture_view",
+            name = "Picture View",
+            icon = "🖼",
+            category = AppCategory.MEDIA,
+            description = "View pictures and images"
+        ) { PictureViewApp(it) })
         register(PrintImageApp.APP_INFO)
         
         // ============== DEVELOPMENT APPS ==============
-        register(MineCodeIDEApp.APP_INFO)
-        register(Print3DApp.APP_INFO)
-        register(Test3DApp.APP_INFO)
+        register(AppInfo(
+            id = "minecode",
+            name = "MineCode IDE",
+            icon = "💻",
+            category = AppCategory.DEVELOPMENT,
+            description = "Integrated development environment"
+        ) { MineCodeApp(it) })
+        register(AppInfo(
+            id = "3d_print",
+            name = "3D Print",
+            icon = "🖨",
+            category = AppCategory.DEVELOPMENT,
+            description = "Design and print 3D models"
+        ) { Print3DApp(it) })
         register(LuaApp.APP_INFO)
         register(SampleApp.APP_INFO)
         
         // ============== NETWORK APPS ==============
-        register(IRCClientApp.APP_INFO)
+        register(AppInfo(
+            id = "irc",
+            name = "IRC",
+            icon = "💬",
+            category = AppCategory.NETWORK,
+            description = "Internet Relay Chat client"
+        ) { IRCApp(it) })
         register(WeatherApp.APP_INFO)
         register(TranslateApp.APP_INFO)
         register(FTPClientApp.APP_INFO)
@@ -237,7 +276,12 @@ class ApplicationRegistry(private val os: KotlinOS) {
         app.running = true
         
         // Register with process manager
-        app.processId = os.processManager.spawn("app:$id", app::onUpdate)
+        app.process = os.processManager.spawn("app:$id", ProcessPriority.NORMAL) {
+            while (app.running) {
+                app.onUpdate()
+                kotlinx.coroutines.delay(16) // ~60fps
+            }
+        }
         
         // Track running instance
         runningApps.getOrPut(id) { mutableListOf() }.add(app)

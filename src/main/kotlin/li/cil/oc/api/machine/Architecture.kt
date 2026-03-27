@@ -102,7 +102,7 @@ interface Architecture {
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Architecture(
+annotation class ArchitectureName(
     /**
      * The display name for this architecture.
      */
@@ -158,8 +158,8 @@ object ArchitectureRegistry {
      * that takes a Machine parameter.
      */
     fun register(id: String, architectureClass: KClass<out li.cil.oc.api.machine.Architecture>) {
-        val annotation = architectureClass.annotations.filterIsInstance<Architecture>().firstOrNull()
-            ?: throw IllegalArgumentException("Architecture class must be annotated with @Architecture")
+        val annotation = architectureClass.annotations.filterIsInstance<ArchitectureName>().firstOrNull()
+            ?: throw IllegalArgumentException("Architecture class must be annotated with @ArchitectureName")
         
         register(id, object : ArchitectureFactory {
             override val name = annotation.value

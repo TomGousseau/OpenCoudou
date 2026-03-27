@@ -1,9 +1,12 @@
 package li.cil.oc.server.network
 
 import li.cil.oc.api.network.Component
+import li.cil.oc.api.network.ComponentMethod
 import li.cil.oc.api.network.Connector
 import li.cil.oc.api.network.Environment
+import li.cil.oc.api.network.Message
 import li.cil.oc.api.network.Node
+import li.cil.oc.api.network.Reachability
 import li.cil.oc.api.network.Visibility
 import li.cil.oc.common.config.Config
 import net.minecraft.core.BlockPos
@@ -55,7 +58,7 @@ class NetworkGraph {
         }
         
         // Notify the environment that it connected
-        node.environment?.onConnect(node)
+        node.host.onConnect(node)
         
         dirty = true
         return true
@@ -68,7 +71,7 @@ class NetworkGraph {
         if (!nodes.containsKey(node.id)) return false
         
         // Notify the environment that it will disconnect
-        node.environment?.onDisconnect(node)
+        node.host.onDisconnect(node)
         
         // Remove all edges involving this node
         val connected = edges.remove(node.id) ?: mutableSetOf()
@@ -236,7 +239,7 @@ class NetworkGraph {
         val visibleComponents = getVisibleComponents(source)
         if (targetNode !in visibleComponents) return false
         
-        targetNode.environment?.onMessage(NetworkMessage(source, name, args.toList()))
+        targetNode.host.onMessage(NetworkMessage(source, name, args.toList()).toApiMessage())
         return true
     }
     
@@ -248,7 +251,7 @@ class NetworkGraph {
         
         for (node in nodes.values) {
             if (node.id != source.id) {
-                node.environment?.onMessage(message)
+                node.host.onMessage(message.toApiMessage())
             }
         }
     }
@@ -397,7 +400,8 @@ class NetworkGraph {
             nodeTag.putUUID("id", node.id)
             nodeTag.putString("type", node.javaClass.name)
             
-            val nodeData = node.save()
+            val nodeData = CompoundTag()
+            node.save(nodeData)
             nodeTag.put("data", nodeData)
             
             nodesList.add(nodeTag)
@@ -464,26 +468,77 @@ class NetworkGraph {
  * Base class for network nodes
  */
 open class NetworkNode(
-    override val environment: Environment? = null
+    private val _host: Environment
 ) : Node {
-    override val id: UUID = UUID.randomUUID()
+    // Internal ID for graph operations
+    val id: UUID = UUID.randomUUID()
+    
+    override val address: String = UUID.randomUUID().toString().replace("-", "").take(8)
     override var network: li.cil.oc.api.network.Network? = null
-    override val reachability: Visibility = Visibility.NEIGHBORS
+    override val host: Environment get() = _host
+    override val reachability: Reachability = Reachability.NEIGHBORS
     
-    open fun save(): CompoundTag = CompoundTag()
-    
-    open fun load(tag: CompoundTag) {}
-    
-    override fun connect(node: Node) {
-        // Delegate to network
+    override fun save(tag: CompoundTag) {
+        tag.putString("address", address)
     }
     
-    override fun disconnect(node: Node) {
-        // Delegate to network
+    override fun load(tag: CompoundTag) {
+        // Address is immutable after creation
+    }
+    
+    override fun connect(other: Node): Boolean {
+        val net = network ?: return false
+        val otherNode = other as? NetworkNode ?: return false
+        return (net as? NetworkImpl)?.graph?.connect(this, otherNode) ?: false
+    }
+    
+    override fun disconnect(other: Node): Boolean {
+        val net = network ?: return false
+        val otherNode = other as? NetworkNode ?: return false
+        return (net as? NetworkImpl)?.graph?.disconnect(this, otherNode) ?: false
     }
     
     override fun remove() {
-        network?.remove(this)
+        (network as? NetworkImpl)?.graph?.removeNode(this)
+    }
+    
+    override fun neighbors(): Collection<Node> {
+        val graph = (network as? NetworkImpl)?.graph ?: return emptyList()
+        return graph.getConnectedNodes(this)
+    }
+    
+    override fun reachableNodes(): Collection<Node> {
+        val graph = (network as? NetworkImpl)?.graph ?: return emptyList()
+        return graph.getNodes().filter { it != this }
+    }
+    
+    override fun sendToAddress(target: String, name: String, vararg args: Any?): Any? {
+        val graph = (network as? NetworkImpl)?.graph ?: return null
+        graph.sendMessage(this, target, name, *(args.filterNotNull().toTypedArray()))
+        return null
+    }
+    
+    override fun sendToNeighbors(name: String, vararg args: Any?) {
+        for (neighbor in neighbors()) {
+            (neighbor as? NetworkNode)?.host?.onMessage(createMessage(name, args))
+        }
+    }
+    
+    override fun sendToReachable(name: String, vararg args: Any?) {
+        for (node in reachableNodes()) {
+            (node as? NetworkNode)?.host?.onMessage(createMessage(name, args))
+        }
+    }
+    
+    override fun sendToVisible(name: String, vararg args: Any?) {
+        val graph = (network as? NetworkImpl)?.graph ?: return
+        for (component in graph.getVisibleComponents(this)) {
+            component.host.onMessage(createMessage(name, args))
+        }
+    }
+    
+    private fun createMessage(name: String, args: Array<out Any?>): Message {
+        return Message(this, name, args.filterNotNull().toTypedArray())
     }
 }
 
@@ -491,18 +546,20 @@ open class NetworkNode(
  * A node that represents a component accessible via Lua
  */
 class ComponentNode(
-    environment: Environment?,
+    host: Environment,
     override val name: String,
     override val visibility: Visibility = Visibility.NETWORK
-) : NetworkNode(environment), Component {
-    override val address: String = UUID.randomUUID().toString().take(8)
+) : NetworkNode(host), Component {
     
-    override fun save(): CompoundTag {
-        val tag = super.save()
+    private val _methods = mutableMapOf<String, ComponentMethod>()
+    
+    override val methods: Map<String, ComponentMethod>
+        get() = _methods.toMap()
+    
+    override fun save(tag: CompoundTag) {
+        super.save(tag)
         tag.putString("name", name)
-        tag.putString("address", address)
         tag.putInt("visibility", visibility.ordinal)
-        return tag
     }
     
     override fun canBeSeenFrom(other: Node): Boolean {
@@ -517,7 +574,17 @@ class ComponentNode(
                     graph.areDirectlyConnected(this, otherNode)
                 } else false
             }
+            Visibility.OTHERS -> other.network == network && other != this
         }
+    }
+    
+    override fun invoke(method: String, context: li.cil.oc.api.machine.Context, vararg args: Any?): Array<Any?> {
+        val m = _methods[method] ?: throw NoSuchMethodException("No such method: $method")
+        return m.invoke(context, args)
+    }
+    
+    fun registerMethod(name: String, method: ComponentMethod) {
+        _methods[name] = method
     }
 }
 
@@ -525,15 +592,15 @@ class ComponentNode(
  * A node that can transfer power
  */
 class PowerNode(
-    environment: Environment?,
+    host: Environment,
     val maxEnergy: Double,
     var storedEnergy: Double = 0.0
-) : NetworkNode(environment), Connector {
+) : NetworkNode(host), Connector {
+    override val bufferSize: Double
+        get() = maxEnergy
+    
     override val localBuffer: Double
         get() = storedEnergy
-    
-    override val localBufferSize: Double
-        get() = maxEnergy
     
     override val globalBuffer: Double
         get() = (network as? NetworkImpl)?.graph?.getStoredEnergy() ?: storedEnergy
@@ -562,11 +629,18 @@ class PowerNode(
         }
     }
     
-    override fun save(): CompoundTag {
-        val tag = super.save()
+    override fun tryChangeBuffer(delta: Double): Boolean {
+        return if (delta < 0) {
+            globalBuffer >= -delta && changeBuffer(delta) != 0.0
+        } else {
+            globalBuffer + delta <= globalBufferSize && changeBuffer(delta) != 0.0
+        }
+    }
+    
+    override fun save(tag: CompoundTag) {
+        super.save(tag)
         tag.putDouble("maxEnergy", maxEnergy)
         tag.putDouble("storedEnergy", storedEnergy)
-        return tag
     }
     
     override fun load(tag: CompoundTag) {
@@ -576,65 +650,42 @@ class PowerNode(
 }
 
 /**
- * Message sent across the network
+ * Internal message for network graph operations
  */
 data class NetworkMessage(
     val source: NetworkNode,
     val name: String,
     val args: List<Any>
-)
+) {
+    fun toApiMessage(): Message = Message(source, name, args.toTypedArray())
+}
 
 /**
  * Implementation of the Network API interface
  */
 class NetworkImpl(val graph: NetworkGraph = NetworkGraph()) : li.cil.oc.api.network.Network {
-    override val nodes: Iterable<Node>
+    override val nodes: Collection<Node>
         get() = graph.getNodes()
     
-    override fun connect(nodeA: Node, nodeB: Node): Boolean {
-        val a = nodeA as? NetworkNode ?: return false
-        val b = nodeB as? NetworkNode ?: return false
-        return graph.connect(a, b)
-    }
-    
-    override fun disconnect(nodeA: Node, nodeB: Node): Boolean {
-        val a = nodeA as? NetworkNode ?: return false
-        val b = nodeB as? NetworkNode ?: return false
-        return graph.disconnect(a, b)
-    }
-    
-    override fun remove(node: Node): Boolean {
+    override fun contains(node: Node): Boolean {
         val n = node as? NetworkNode ?: return false
-        return graph.removeNode(n)
+        return graph.getNodes().contains(n)
     }
     
     override fun node(address: String): Node? {
-        return graph.getNodes().filterIsInstance<ComponentNode>()
-            .find { it.address == address }
+        return graph.getNodes().find { it.address == address }
     }
     
-    override fun sendToAddress(source: Node, target: String, name: String, vararg args: Any): Boolean {
-        val s = source as? NetworkNode ?: return false
-        return graph.sendMessage(s, target, name, *args)
+    override fun <T : Node> nodes(type: Class<T>): Collection<T> {
+        return graph.getNodes().filterIsInstance(type)
     }
     
-    override fun sendToNeighbors(source: Node, name: String, vararg args: Any) {
-        val s = source as? NetworkNode ?: return
-        for (neighbor in graph.getConnectedNodes(s)) {
-            neighbor.environment?.onMessage(NetworkMessage(s, name, args.toList()))
-        }
+    override fun components(): Collection<Component> {
+        return graph.getNodes().filterIsInstance<Component>()
     }
     
-    override fun sendToReachable(source: Node, name: String, vararg args: Any) {
-        val s = source as? NetworkNode ?: return
-        graph.broadcastMessage(s, name, *args)
-    }
-    
-    override fun sendToVisible(source: Node, name: String, vararg args: Any) {
-        val s = source as? NetworkNode ?: return
-        for (component in graph.getVisibleComponents(s)) {
-            component.environment?.onMessage(NetworkMessage(s, name, args.toList()))
-        }
+    override fun connectors(): Collection<Connector> {
+        return graph.getNodes().filterIsInstance<Connector>()
     }
 }
 

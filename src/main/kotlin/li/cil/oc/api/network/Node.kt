@@ -381,7 +381,7 @@ internal open class NodeImpl(
     }
 }
 
-internal class ConnectorImpl(
+internal open class ConnectorImpl(
     host: Environment,
     reachability: Reachability,
     bufferSize: Double
@@ -389,7 +389,7 @@ internal class ConnectorImpl(
     
     override val bufferSize: Double = bufferSize
     override var localBuffer: Double = 0.0
-        private set
+        protected set
     
     override val globalBuffer: Double
         get() = network?.let { net ->

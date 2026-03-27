@@ -780,14 +780,6 @@ class LuaJArchitecture(private var machine: Machine?) : Architecture {
         // Signals are queued and handled in runSynchronized
     }
     
-    override fun onConnect(): Unit {
-        // Component connected
-    }
-    
-    override fun onDisconnect(): Unit {
-        // Component disconnected
-    }
-    
     override fun load(nbt: net.minecraft.nbt.CompoundTag): Unit {
         // Restore state from NBT
         if (nbt.contains("bootCode")) {

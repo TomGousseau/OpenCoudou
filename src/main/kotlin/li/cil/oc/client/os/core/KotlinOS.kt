@@ -2,9 +2,12 @@ package li.cil.oc.client.os.core
 
 import li.cil.oc.client.os.gui.WindowManager
 import li.cil.oc.client.os.gui.Desktop
+import li.cil.oc.client.os.gui.DesktopShell
+import li.cil.oc.client.os.gui.WindowManagerIntegration
 import li.cil.oc.client.os.filesystem.VirtualFileSystem
 import li.cil.oc.client.os.apps.ApplicationRegistry
 import li.cil.oc.client.os.components.NativeComponentBus
+import li.cil.oc.client.os.components.HardwareAbstractionLayer
 import li.cil.oc.client.os.network.NetworkStack
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
@@ -58,10 +61,18 @@ class KotlinOS(
     val filesystem: VirtualFileSystem by lazy { VirtualFileSystem() }
     val componentBus: NativeComponentBus by lazy { NativeComponentBus() }
     val processManager: ProcessManager by lazy { ProcessManager() }
+    val scheduler: ProcessScheduler by lazy { ProcessScheduler() }
+    val hal: HardwareAbstractionLayer by lazy { HardwareAbstractionLayer(componentBus) }
     val network: NetworkStack by lazy { NetworkStack() }
     val windowManager: WindowManager by lazy { WindowManager(this) }
     val desktop: Desktop by lazy { Desktop(this) }
+    val shell: DesktopShell by lazy { DesktopShell(this) }
     val appRegistry: ApplicationRegistry by lazy { ApplicationRegistry(this) }
+    
+    // Window manager integration (connects windows, apps, processes)
+    val wmIntegration: WindowManagerIntegration by lazy {
+        WindowManagerIntegration(this, windowManager, shell, scheduler)
+    }
     
     // OS state
     var isRunning = false
@@ -87,6 +98,8 @@ class KotlinOS(
         runBlocking {
             listOf(
                 async { componentBus.initializeDefaults() },
+                async { hal.initialize() },
+                async { scheduler.start() },
                 async { /* network ready */ }
             ).awaitAll()
         }
@@ -94,6 +107,8 @@ class KotlinOS(
         // Phase 2: Initialize UI (must be sequential)
         windowManager.initialize()
         desktop.initialize()
+        shell.initialize()
+        wmIntegration.initialize()
         
         // Phase 3: Start system
         isRunning = true
@@ -116,9 +131,13 @@ class KotlinOS(
         while (isRunning) {
             val frameStart = System.nanoTime()
             
+            // Execute scheduler for process management
+            scheduler.tick()
+            
             // Update UI
             windowManager.update()
             desktop.update()
+            shell.update()
             
             // Render frame
             render()
@@ -137,8 +156,8 @@ class KotlinOS(
      */
     fun render() {
         frameBuffer.clear()
-        desktop.render(frameBuffer)
-        windowManager.render(frameBuffer)
+        shell.render(frameBuffer)  // Shell renders desktop background, icons, taskbar
+        windowManager.render(frameBuffer)  // Windows render on top
     }
     
     /**
@@ -149,6 +168,8 @@ class KotlinOS(
         isRunning = false
         osScope.cancel()
         
+        scheduler.shutdown()
+        hal.shutdown()
         processManager.killAll()
         windowManager.closeAll()
         network.shutdown()
@@ -175,6 +196,7 @@ class KotlinOS(
         screenWidth = screenWidth,
         screenHeight = screenHeight,
         processCount = processManager.listProcesses().size,
+        schedulerProcessCount = scheduler.getProcessCount(),
         memoryUsed = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory(),
         memoryTotal = Runtime.getRuntime().totalMemory()
     )
@@ -185,8 +207,11 @@ class KotlinOS(
     fun handleClick(x: Int, y: Int, button: Int) {
         // First try windows
         if (!windowManager.handleClick(x, y, button)) {
-            // Then desktop
-            desktop.handleClick(x, y, button)
+            // Then shell (taskbar, notifications, etc.)
+            if (!shell.handleClick(x, y, button)) {
+                // Then legacy desktop
+                desktop.handleClick(x, y, button)
+            }
         }
     }
     
@@ -194,7 +219,18 @@ class KotlinOS(
      * Handle a key event from the keyboard.
      */
     fun handleKey(keyCode: Int, char: Char) {
-        windowManager.handleKey(keyCode, char)
+        // First try shell shortcuts
+        if (!shell.handleKey(keyCode, char)) {
+            windowManager.handleKey(keyCode, char)
+        }
+    }
+    
+    /**
+     * Handle mouse move event.
+     */
+    fun handleMouseMove(x: Int, y: Int) {
+        shell.handleMouseMove(x, y)
+        windowManager.handleMouseMove(x, y)
     }
     
     /**
@@ -216,6 +252,7 @@ data class SystemInfo(
     val screenWidth: Int,
     val screenHeight: Int,
     val processCount: Int,
+    val schedulerProcessCount: Int,
     val memoryUsed: Long,
     val memoryTotal: Long
 )
