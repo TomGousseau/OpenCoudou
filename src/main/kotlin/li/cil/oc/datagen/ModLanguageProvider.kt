@@ -72,6 +72,7 @@ class ModLanguageProvider(
         addItem(ModItems.MICROCHIP_TIER1, "Microchip (Tier 1)")
         addItem(ModItems.MICROCHIP_TIER2, "Microchip (Tier 2)")
         addItem(ModItems.MICROCHIP_TIER3, "Microchip (Tier 3)")
+        addItem(ModItems.DIAMOND_CHIP, "Diamond Chip")
         addItem(ModItems.ALU, "Arithmetic Logic Unit")
         addItem(ModItems.CONTROL_UNIT, "Control Unit")
         addItem(ModItems.DISK_PLATTER, "Disk Platter")
@@ -100,6 +101,9 @@ class ModLanguageProvider(
         addItem(ModItems.RAM_TIER25, "Memory (Tier 2.5)")
         addItem(ModItems.RAM_TIER3, "Memory (Tier 3)")
         addItem(ModItems.RAM_TIER35, "Memory (Tier 3.5)")
+        addItem(ModItems.RAM_TIER4, "Memory (Tier 4)")
+        addItem(ModItems.RAM_TIER5, "Memory (Tier 5)")
+        addItem(ModItems.RAM_TIER6, "Memory (Tier 6)")
         
         // === Storage ===
         addItem(ModItems.EEPROM, "EEPROM")
@@ -107,6 +111,9 @@ class ModLanguageProvider(
         addItem(ModItems.HDD_TIER1, "Hard Disk Drive (Tier 1)")
         addItem(ModItems.HDD_TIER2, "Hard Disk Drive (Tier 2)")
         addItem(ModItems.HDD_TIER3, "Hard Disk Drive (Tier 3)")
+        addItem(ModItems.DISK, "Managed Disk")
+        addItem(ModItems.LUA_BIOS, "Lua BIOS")
+        addItem(ModItems.OPENOS, "OpenOS (Floppy)")
         
         // === Cards ===
         addItem(ModItems.GRAPHICS_CARD_TIER1, "Graphics Card (Tier 1)")
@@ -142,6 +149,7 @@ class ModLanguageProvider(
         addItem(ModItems.INVENTORY_CONTROLLER_UPGRADE, "Inventory Controller Upgrade")
         addItem(ModItems.NAVIGATION_UPGRADE, "Navigation Upgrade")
         addItem(ModItems.PISTON_UPGRADE, "Piston Upgrade")
+        addItem(ModItems.STICKY_PISTON_UPGRADE, "Sticky Piston Upgrade")
         addItem(ModItems.SIGN_UPGRADE, "Sign I/O Upgrade")
         addItem(ModItems.SOLAR_GENERATOR_UPGRADE, "Solar Generator Upgrade")
         addItem(ModItems.TANK_UPGRADE, "Tank Upgrade")
@@ -162,6 +170,7 @@ class ModLanguageProvider(
         // === APUs ===
         addItem(ModItems.APU_TIER1, "Accelerated Processing Unit (Tier 1)")
         addItem(ModItems.APU_TIER2, "Accelerated Processing Unit (Tier 2)")
+        addItem(ModItems.APU_CREATIVE, "Accelerated Processing Unit (Creative)")
         
         // === Component Bus ===
         addItem(ModItems.COMPONENT_BUS_TIER1, "Component Bus (Tier 1)")
@@ -172,6 +181,7 @@ class ModLanguageProvider(
         addItem(ModItems.SERVER_TIER1, "Server (Tier 1)")
         addItem(ModItems.SERVER_TIER2, "Server (Tier 2)")
         addItem(ModItems.SERVER_TIER3, "Server (Tier 3)")
+        addItem(ModItems.SERVER_CREATIVE, "Server (Creative)")
         addItem(ModItems.SERVER_CREATIVE, "Creative Server")
         addItem(ModItems.TERMINAL_SERVER, "Terminal Server")
         
@@ -189,6 +199,14 @@ class ModLanguageProvider(
         addItem(ModItems.DRONE_CASE_TIER1, "Drone Case (Tier 1)")
         addItem(ModItems.DRONE_CASE_TIER2, "Drone Case (Tier 2)")
         addItem(ModItems.DRONE_CASE_CREATIVE, "Creative Drone Case")
+        addItem(ModItems.DRONE, "Drone")
+        
+        // === Debug/Creative Items ===
+        addItem(ModItems.ABSTRACT_BUS_CARD, "Abstract Bus Card")
+        addItem(ModItems.DEBUGGER, "Debugger")
+        addItem(ModItems.TEXTURE_PICKER, "Texture Picker")
+        addItem(ModItems.DISK_DRIVE_MOUNTABLE, "Disk Drive (Mountable)")
+        addItem(ModItems.PRESENT, "Present")
         
         // === Tooltips ===
         add("tooltip.${OpenComputers.MOD_ID}.tier", "Tier: %s")

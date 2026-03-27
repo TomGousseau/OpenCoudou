@@ -1,6 +1,1 @@
-{
-    "parent": "opencomputers:item/flat",
-    "textures": {
-        "layer0": "opencomputers:items/ram4"
-    }
-}
+{"parent":"item/generated","textures":{"layer0":"opencomputers:item/ram4"}}

@@ -467,14 +467,80 @@ object ModItems {
     }
 
     // ========================================
-    // Additional Materials
+    // Higher Tier Memory (Tier 4/5/6)
     // ========================================
+    
+    val MEMORY_TIER4: DeferredItem<MemoryItem> = ITEMS.registerItem("ram4") { props ->
+        MemoryItem(props, 4)
+    }
+    
+    val MEMORY_TIER5: DeferredItem<MemoryItem> = ITEMS.registerItem("ram5") { props ->
+        MemoryItem(props, 5)
+    }
+    
+    val MEMORY_TIER6: DeferredItem<MemoryItem> = ITEMS.registerItem("ram6") { props ->
+        MemoryItem(props, 6)
+    }
 
-    val INK_CARTRIDGE_COLOR: DeferredItem<Item> = ITEMS.registerSimpleItem("inkcartridge_color")
+    // ========================================
+    // Creative APU
+    // ========================================
+    
+    val APU_CREATIVE: DeferredItem<APUItem> = ITEMS.registerItem("apu_creative") { props ->
+        APUItem(props, 3)
+    }
+
+    // ========================================
+    // Loot Disks & Storage
+    // ========================================
+    
+    val LUA_BIOS: DeferredItem<EEPROMItem> = ITEMS.registerItem("luabios", ::EEPROMItem)
+    
+    val OPENOS: DeferredItem<FloppyItem> = ITEMS.registerItem("openos", ::FloppyItem)
+    
+    val DISK: DeferredItem<HDDItem> = ITEMS.registerItem("disk") { props ->
+        HDDItem(props, 1) // Managed disk
+    }
+
+    // ========================================
+    // Assembled Entities
+    // ========================================
+    
+    val DRONE: DeferredItem<Item> = ITEMS.registerSimpleItem("drone") // TODO: DroneItem class
 
     // ========================================
     // Additional Upgrades
     // ========================================
+    
+    val UPGRADE_STICKY_PISTON: DeferredItem<UpgradeItem> = ITEMS.registerItem("stickypistonupgrade") { props ->
+        UpgradeItem(props, "sticky_piston")
+    }
+
+    // ========================================
+    // Creative/Debug Items
+    // ========================================
+    
+    val ABSTRACT_BUS_CARD: DeferredItem<Item> = ITEMS.registerSimpleItem("abstractbuscard")
+    
+    val DEBUGGER: DeferredItem<Item> = ITEMS.registerSimpleItem("debugger")
+    
+    val TEXTURE_PICKER: DeferredItem<Item> = ITEMS.registerSimpleItem("texturepicker")
+    
+    val DISK_DRIVE_MOUNTABLE: DeferredItem<Item> = ITEMS.registerSimpleItem("diskdrivemountable")
+
+    // ========================================
+    // Additional Materials
+    // ========================================
+    
+    val DIAMOND_CHIP: DeferredItem<Item> = ITEMS.registerSimpleItem("chipdiamond")
+
+    val INK_CARTRIDGE_COLOR: DeferredItem<Item> = ITEMS.registerSimpleItem("inkcartridge_color")
+    
+    // ========================================
+    // Easter Eggs
+    // ========================================
+    
+    val PRESENT: DeferredItem<Item> = ITEMS.registerSimpleItem("present")
 
     val SIGN_IO_UPGRADE: DeferredItem<SignIOUpgradeItem> = ITEMS.registerItem("signio_upgrade", ::SignIOUpgradeItem)
 
@@ -500,6 +566,9 @@ object ModItems {
     val RAM_TIER25 get() = MEMORY_TIER2_5
     val RAM_TIER3 get() = MEMORY_TIER3
     val RAM_TIER35 get() = MEMORY_TIER3_5
+    val RAM_TIER4 get() = MEMORY_TIER4
+    val RAM_TIER5 get() = MEMORY_TIER5
+    val RAM_TIER6 get() = MEMORY_TIER6
 
     // Upgrade aliases
     val ANGEL_UPGRADE get() = UPGRADE_ANGEL
@@ -527,10 +596,12 @@ object ModItems {
     val TANK_CONTROLLER_UPGRADE get() = UPGRADE_TANK_CONTROLLER
     val TRACTOR_BEAM_UPGRADE get() = UPGRADE_TRACTOR_BEAM
     val TRADING_UPGRADE get() = UPGRADE_TRADING
+    val STICKY_PISTON_UPGRADE get() = UPGRADE_STICKY_PISTON
 
     // Material aliases
     val CIRCUIT_BOARD get() = CIRCUIT_TIER1
     val PRINTED_CIRCUIT_BOARD get() = CIRCUIT_TIER2
+    val CHIP_DIAMOND get() = DIAMOND_CHIP
 
     // ========================================
     // Registration
